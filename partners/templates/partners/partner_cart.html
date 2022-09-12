@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for instance in cart %}
+        {% if  instance.account_id == request.user.id %}
+            <div style="margin: 10px;">
+                <div style="display: flex;">
+
+                    <div style="display: flex;">
+                        <a style="display: flex;" href='{{ instance.product.get_absolute_url }}'>
+                            <img style="margin: auto; display: block;  width: 200px;" src="{{ instance.product.picture.url }}">
+                        </a>
+                    </div>
+
+                    <hr class="cline">
+
+                    <div>
+                        <h2>{{ instance.product.product_name }}</h2>
+                        <p>材質與顏色 ： {{ instance.product.material_color }}</p></p>
+                        <p>價格 ： NT$. {{ instance.product.price }}</p>
+                    </div>
+
+                    <div style="display:flex; position: relative; margin: 50px 30px 50px 520px;">
+                        <button style="height: 30px;">移除收藏</button>
+                    </div>
+
+                </div>
+                <hr class="rline">
+
+            </div>
+
+        {% endif %}
+    {% endfor %}
+{% endblock %}
